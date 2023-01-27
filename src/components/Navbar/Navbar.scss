@@ -1,0 +1,264 @@
+.app__navbar {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 1rem 2rem;
+	background: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(4px);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-right: none;
+	border-left: none;
+	position: fixed;
+	z-index: 999;
+	@media (max-width: 900px) {
+		padding: 10px 25px;
+		padding-left: 10px;
+	}
+}
+.dark {
+	.app__navbar {
+		background: rgba(0, 0, 0, 0.193);
+	}
+	.app__navbar-menu {
+		div {
+			background: #000;
+		}
+	}
+}
+.app__navbar-logo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+	img {
+		width: 100px;
+		height: 40px;
+
+		@media (min-width: 2000px) {
+			width: 180px;
+			height: 70px;
+		}
+	}
+}
+
+.app__navbar-links {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style: none;
+
+	li {
+		margin: 0 1rem;
+		cursor: pointer;
+		flex-direction: column;
+
+		div {
+			background: transparent;
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			margin-bottom: 5px;
+		}
+
+		a {
+			position: relative;
+			color: var(--gray-color);
+			font-size: 1rem;
+			text-decoration: none;
+			flex-direction: column;
+
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			font-weight: 500;
+			transition: 0.3s all ease-in-out;
+
+			&::before {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background: var(--gradient-2);
+				width: 0%;
+				height: 2px;
+				transition: width 0.4s ease-in-out;
+			}
+
+			&:hover {
+				color: var(--link-hover);
+
+				&::before {
+					width: 100%;
+				}
+			}
+		}
+
+		&:hover {
+			div {
+				background: var(--gradient);
+			}
+		}
+	}
+
+	@media (max-width: 900px) {
+		display: none;
+	}
+}
+.mobile-menu {
+	position: relative;
+	padding-right: 1rem;
+	margin-bottom: 2rem;
+	@media (max-width: 400px) {
+		margin-right: 10px;
+	}
+}
+
+.app__navbar-menu {
+	width: 35px;
+	height: 35px;
+	font-size: 4rem;
+
+	border-radius: 50%;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--gradient);
+
+	svg {
+		width: 70%;
+		height: 70%;
+		color: var(--burger-color);
+		cursor: pointer;
+	}
+
+	div {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 5;
+		padding: 1rem;
+
+		width: 80%;
+		height: 100vh;
+
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		flex-direction: column;
+
+		background: url("../../assets/bg-white.jpg") no-repeat;
+		background-color: var(--white-color);
+		// background-position: right;
+		background-size: cover;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+		svg {
+			width: 35px;
+			height: 35px;
+			stroke-width: 1px;
+			color: var(--closemenu-color);
+			margin-bottom: 2rem;
+			animation: rote 2s 1s ease forwards;
+			@keyframes rote {
+				0% {
+					rotate: 360deg;
+				}
+
+				100% {
+					rotate: 0deg;
+				}
+			}
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			padding-top: 1rem;
+			height: 100vh;
+			width: 100%;
+			// backdrop-filter: blur(var(--blur-value));
+
+			display: flex;
+			justify-content: flex-start;
+			align-items: flex-start;
+			flex-direction: column;
+
+			li {
+				margin: 1rem;
+
+				a {
+					color: var(--gray-color);
+					text-decoration: none;
+					text-transform: uppercase;
+					font-size: 1rem;
+					font-weight: 500;
+					position: relative;
+					transition: 0.3s all ease-in-out;
+
+					&::before {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						background: var(--gradient-2);
+						width: 0%;
+						height: 2px;
+						transition: width 0.2s ease-in-out;
+					}
+
+					&:hover {
+						color: var(--link-color);
+						filter: brightness(150%);
+
+						&::before {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+
+		@media (min-width: 900px) {
+			display: none;
+		}
+
+		// @media (max-width: 650px) {
+		// 	background-position-x: -197px;
+		// }
+	}
+
+	@media (min-width: 900px) {
+		display: none;
+	}
+}
+
+.waves-div {
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	animation: fadeIn 1s 0.4s ease forwards;
+	&::before {
+		content: "";
+		height: 100vh;
+		width: 80%;
+		position: fixed;
+		top: 0;
+		right: 0;
+		filter: blur(6px);
+		background: rgba(0, 0, 0, 0.087) url(../../assets/cyan-loader.gif) no-repeat
+			right;
+		background-size: cover;
+	}
+	@keyframes fadeIn {
+		100% {
+			opacity: 1;
+		}
+	}
+	z-index: -1;
+}

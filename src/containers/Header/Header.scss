@@ -1,0 +1,244 @@
+#home {
+	position: relative;
+	background: url("../../assets/bgIMG.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left;
+	@media (min-width: 1200px) and (max-width: 2200px) {
+		background-position-y: -100px;
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			// top: 5rem;
+			bottom: -3rem;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100%;
+			height: 70px;
+			background: var(--hero-before-bg);
+			box-shadow: 0 -4rem 30px 2rem var(--hero-before-shadow);
+			z-index: 9;
+		}
+	}
+
+	.app__wrapper {
+		padding: 0;
+
+		.copyright {
+			display: none;
+		}
+	}
+}
+.dark {
+	#home {
+		background: none;
+		background: url("../../assets/bgBlack.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: top left;
+	}
+}
+.app__header {
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	flex-direction: row;
+
+	padding: 6rem 2rem 0;
+
+	@media (min-width: 2000px) {
+		padding-top: 8rem;
+	}
+
+	@media (max-width: 1200px) {
+		flex-direction: column;
+	}
+
+	@media (max-width: 400px) {
+		padding: 6rem 1rem 2rem;
+	}
+}
+
+.app__header-info {
+	flex: 0.65;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	height: 100%;
+
+	@media (max-width: 2000px) {
+		width: 100%;
+		margin-right: 0rem;
+	}
+}
+
+.app__header-badge {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	flex-direction: column;
+
+	.badge-cmp,
+	.tag-cmp {
+		padding: 1rem 2rem;
+		border: var(--white-color);
+		border-radius: 15px;
+		flex-direction: row;
+		width: auto;
+		background: var(--hi-hero);
+		animation: float 5s ease infinite;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		&:hover {
+			animation-play-state: paused;
+		}
+	}
+	.badge-cmp {
+		.p {
+			color: var(--hero-text);
+		}
+	}
+
+	.tag-cmp {
+		flex-direction: column;
+		margin-top: 3rem;
+		animation-delay: 1.4s;
+
+		p {
+			width: 100%;
+			text-transform: uppercase;
+			text-align: right;
+		}
+	}
+
+	span {
+		font-size: 2.5rem;
+
+		@media (min-width: 2000px) {
+			font-size: 5rem;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	@keyframes float {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-20px);
+			background: #000;
+			color: var(--hero-text);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+}
+
+.app__header-circles {
+	flex: 0.75;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: flex-start;
+	height: 100%;
+	margin-left: 1rem;
+
+	div {
+		width: 100px;
+		height: 100px;
+		// border-radius: 15px;
+		border-radius: 50%;
+		background: var(--circles-bg);
+		// background: var(--white-color);
+		box-shadow: -10px -10px 10px var(--circles-shadow-2),
+			10px 10px 15px var(--circles-shadow);
+
+		img {
+			width: 60%;
+			height: 60%;
+		}
+	}
+
+	div:nth-child(1) {
+		width: 70px;
+		height: 70px;
+	}
+
+	div:nth-child(2) {
+		margin: 1rem;
+		margin-left: 1.75rem;
+		height: 150px !important;
+		width: 150px !important;
+	}
+
+	@media (min-width: 2000px) {
+		div:nth-child(1) {
+			width: 170px;
+			height: 170px;
+		}
+
+		div:nth-child(2) {
+			height: 400px !important;
+			width: 400px !important;
+		}
+
+		div:nth-child(3) {
+			width: 200px;
+			height: 200px;
+		}
+	}
+	@media (max-width: 1200px) {
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: 0;
+
+		div {
+			margin: 1rem;
+		}
+	}
+}
+
+.app__header-img {
+	flex: 1;
+	height: 100%;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	position: relative;
+	margin-top: 2rem;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		z-index: 1;
+		&:hover {
+			filter: none;
+			animation: none;
+		}
+	}
+
+	.overlay_circle {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 0;
+		height: 95%;
+		width: 100%;
+	}
+
+	@media (max-width: 1200px) {
+		// margin-bottom: 2rem;
+		padding-bottom: 2rem;
+		margin: 0;
+	}
+}
