@@ -14,7 +14,7 @@ npm run start
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Want to connevt?
+# Want to connect?
 
 - [Vxrcel on X(twitter)](https://x.com/kleen_pulse) - for assistance.
 
