@@ -3,7 +3,7 @@
 	--cyan: #0ff;
 	--white: #fff;
 	--black: #000;
-	--primary-color: #edf2f8;
+	--primary-color: #dfe7f2;
 	--secondary-color: #313bac;
 	--black-color: #030303;
 	--lightGray-color: #e4e4e4;
@@ -165,7 +165,7 @@ body {
 }
 
 .app__whitebg {
-	background-color: var(--white-color);
+	background-color: var(--primary-color);
 	position: relative;
 }
 .light {
@@ -179,11 +179,11 @@ body {
 			height: 250px;
 			width: 250px;
 			border-radius: 50%;
-			box-shadow: 0 0 23rem #45f6ff;
+
 			background: #42f6ff;
 			transition: 0.4s;
 
-			filter: blur(3em);
+			filter: blur(150px);
 
 			@media (min-width: 1200px) {
 				width: 350px;
@@ -199,10 +199,10 @@ body {
 			height: 200px;
 			width: 200px;
 			border-radius: 50%;
-			box-shadow: 0 0 23rem rgb(255, 0, 212);
+
 			background: rgb(246, 0, 221);
 			transition: 0.4s;
-			filter: blur(4em);
+			filter: blur(150px);
 			@media (max-width: 600px) {
 				width: 150px;
 				height: 150px;
@@ -231,7 +231,7 @@ body {
 		background: rgb(0, 255, 255);
 		transition: 0.4s;
 
-		filter: blur(3em);
+		filter: blur(150px);
 		@media (max-width: 400px) {
 			bottom: 0;
 			right: 0;
@@ -253,7 +253,7 @@ body {
 		box-shadow: 0 0 23rem rgb(148, 2, 102);
 		background: rgb(185, 2, 194);
 		transition: 0.4s;
-		filter: blur(3em);
+		filter: blur(150px);
 		@media (max-width: 600px) {
 			width: 150px;
 			height: 150px;
@@ -329,7 +329,16 @@ body {
 		}
 	}
 }
-
+.dark {
+	.head-text {
+		span {
+			background: linear-gradient(90deg, #ffee01, #fb00ff, #23d5ab);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
+}
 .head-text {
 	font-size: 2.75rem;
 	font-weight: 800;
@@ -338,7 +347,10 @@ body {
 	text-transform: capitalize;
 
 	span {
-		color: var(--span-color);
+		background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
 	@media screen and (min-width: 2000px) {

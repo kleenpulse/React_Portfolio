@@ -22,9 +22,20 @@
 	.app__navbar {
 		background: rgba(0, 0, 0, 0.193);
 	}
-	.app__navbar-menu {
+
+	.app__navbar-mobile {
+		background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 		div {
 			background: #000;
+		}
+	}
+
+	.app__navbar-logo {
+		a {
+			background: linear-gradient(90deg, #ffee01, #fb00ff, #23d5ab);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
 	}
 }
@@ -33,14 +44,15 @@
 	justify-content: flex-start;
 	align-items: center;
 
-	img {
-		width: 100px;
-		height: 40px;
-
-		@media (min-width: 2000px) {
-			width: 180px;
-			height: 70px;
-		}
+	a {
+		text-decoration: none;
+		font-weight: 700;
+		text-transform: uppercase;
+		font-size: 1.5rem;
+		background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 }
 
@@ -111,6 +123,7 @@
 	position: relative;
 	padding-right: 1rem;
 	margin-bottom: 2rem;
+	z-index: 10;
 	@media (max-width: 400px) {
 		margin-right: 10px;
 	}
@@ -135,102 +148,111 @@
 		cursor: pointer;
 	}
 
-	div {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		z-index: 5;
-		padding: 1rem;
+	@media (min-width: 900px) {
+		display: none;
+	}
+}
+.app__navbar-mobile {
+	position: absolute;
+	top: 4rem;
+	bottom: 0;
+	right: 0;
+	z-index: 5;
+	padding: 1px;
+	width: 200px;
+	height: 300px;
+	border-radius: 15px;
+	display: flex;
+	opacity: 0;
+	align-items: center;
 
-		width: 80%;
-		height: 100vh;
+	background-color: var(--white-color);
+	// background-position: right;
+	background-size: cover;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	animation: opacity 1s ease forwards;
+	@keyframes opacity {
+		100% {
+			opacity: 1;
+		}
+	}
+	div {
+		width: 200px;
+		height: 296px;
+		border-radius: 15px;
+	}
+
+	svg {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		width: 35px;
+		height: 35px;
+		stroke-width: 1px;
+		color: var(--closemenu-color);
+		margin-bottom: 2rem;
+		cursor: pointer;
+		z-index: 10;
+		animation: rote 2s 1s ease forwards;
+		@keyframes rote {
+			0% {
+				rotate: 360deg;
+			}
+
+			100% {
+				rotate: 0deg;
+			}
+		}
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		// backdrop-filter: blur(var(--blur-value));
 
 		display: flex;
-		justify-content: flex-end;
-		align-items: flex-end;
+		justify-content: flex-start;
+		align-items: flex-start;
 		flex-direction: column;
 
-		background: url("../../assets/bg-white.jpg") no-repeat;
-		background-color: var(--white-color);
-		// background-position: right;
-		background-size: cover;
-		box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+		li {
+			margin: 1rem;
 
-		svg {
-			width: 35px;
-			height: 35px;
-			stroke-width: 1px;
-			color: var(--closemenu-color);
-			margin-bottom: 2rem;
-			animation: rote 2s 1s ease forwards;
-			@keyframes rote {
-				0% {
-					rotate: 360deg;
+			a {
+				color: var(--gray-color);
+				text-decoration: none;
+				text-transform: uppercase;
+				font-size: 1rem;
+				font-weight: 500;
+				position: relative;
+				transition: 0.3s all ease-in-out;
+
+				&::before {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					background: var(--gradient-2);
+					width: 0%;
+					height: 2px;
+					transition: width 0.2s ease-in-out;
 				}
 
-				100% {
-					rotate: 0deg;
-				}
-			}
-		}
-
-		ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			padding-top: 1rem;
-			height: 100vh;
-			width: 100%;
-			// backdrop-filter: blur(var(--blur-value));
-
-			display: flex;
-			justify-content: flex-start;
-			align-items: flex-start;
-			flex-direction: column;
-
-			li {
-				margin: 1rem;
-
-				a {
-					color: var(--gray-color);
-					text-decoration: none;
-					text-transform: uppercase;
-					font-size: 1rem;
-					font-weight: 500;
-					position: relative;
-					transition: 0.3s all ease-in-out;
+				&:hover {
+					color: var(--link-color);
+					filter: brightness(150%);
 
 					&::before {
-						content: "";
-						position: absolute;
-						bottom: 0;
-						left: 0;
-						background: var(--gradient-2);
-						width: 0%;
-						height: 2px;
-						transition: width 0.2s ease-in-out;
-					}
-
-					&:hover {
-						color: var(--link-color);
-						filter: brightness(150%);
-
-						&::before {
-							width: 100%;
-						}
+						width: 100%;
 					}
 				}
 			}
 		}
-
-		@media (min-width: 900px) {
-			display: none;
-		}
-
-		// @media (max-width: 650px) {
-		// 	background-position-x: -197px;
-		// }
 	}
 
 	@media (min-width: 900px) {
@@ -239,26 +261,20 @@
 }
 
 .waves-div {
-	position: absolute;
+	position: fixed;
 	width: 100%;
+	left: 0;
+	top: 0;
+	min-height: 100vh;
 	opacity: 0;
+
+	background: rgba(0, 0, 0, 0.601);
+	z-index: 9;
 	animation: fadeIn 1s 0.4s ease forwards;
-	&::before {
-		content: "";
-		height: 100vh;
-		width: 80%;
-		position: fixed;
-		top: 0;
-		right: 0;
-		filter: blur(6px);
-		background: rgba(0, 0, 0, 0.087) url(../../assets/cyan-loader.gif) no-repeat
-			right;
-		background-size: cover;
-	}
+
 	@keyframes fadeIn {
 		100% {
 			opacity: 1;
 		}
 	}
-	z-index: -1;
 }

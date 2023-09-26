@@ -35,7 +35,7 @@ const Skills = () => {
 							whileInView={{ opacity: [0, 1] }}
 							transition={{ duration: 0.5, delay: 0.3 }}
 							className="app__skills-item app__flex"
-							key={i + 1}
+							key={skill.name}
 						>
 							<div className="app__flex">
 								<img src={urlFor(skill.icon)} alt={skill.name} />

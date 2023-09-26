@@ -2,7 +2,7 @@
 	flex: 1;
 	width: 100%;
 	flex-direction: column;
-	// background: rgba(37, 221, 64, 0.321);
+
 	@media (max-width: 418px) {
 		margin-left: -2rem;
 		width: 80%;
@@ -98,6 +98,7 @@
 
 		input,
 		textarea {
+			margin-bottom: 1rem;
 			width: 100%;
 			padding: 0.95rem;
 			border-radius: 10px;
@@ -106,15 +107,16 @@
 			color: var(--span-color);
 			outline: none;
 			border: none;
+			box-shadow: -8px -8px 15px var(--white-color),
+				10px 10px 15px var(--shadow02);
+			&:focus {
+				border: 1px solid var(--span-color);
+			}
 		}
 
 		textarea {
 			height: 170px;
 			resize: none;
-		}
-
-		&:hover {
-			box-shadow: 0 0 25px rgba(0, 0, 0, 0.23);
 		}
 	}
 

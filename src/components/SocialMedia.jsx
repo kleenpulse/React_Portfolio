@@ -1,6 +1,7 @@
 import React from "react";
-import { BsTwitter, BsGithub } from "react-icons/bs";
+import { BsGithub } from "react-icons/bs";
 import { FaCodepen } from "react-icons/fa";
+import { RiTwitterXLine } from "react-icons/ri";
 
 const SocialMedia = () => {
 	return (
@@ -30,7 +31,7 @@ const SocialMedia = () => {
 					rel="noreferrer"
 				>
 					<div>
-						<BsTwitter />
+						<RiTwitterXLine />
 					</div>
 				</a>
 			</div>
