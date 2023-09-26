@@ -1,3 +1,23 @@
 # React Portfolio
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/72ad4633-633b-4d97-9a7e-c01369a833f2/deploy-status)](https://app.netlify.com/sites/liquidtimecreative/deploys)
+## Getting Started
+
+First, install packages and run the development server:
+
+```bash
+npm install
+```
+
+```bash
+npm run start
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+# Want to connevt?
+
+- [Vxrcel on X(twitter)](https://x.com/kleen_pulse) - for assistance.
+
+## Deployed on Vercel
+
+Check out the live url on [VERCEL](https://vxrcel-portfolio.vercel.app).
