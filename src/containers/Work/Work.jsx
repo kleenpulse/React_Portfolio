@@ -6,11 +6,14 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import "./Work.scss";
 
+import LoadingSpinner from "../../components/LoadingSpinner";
+
 const Work = () => {
 	const [activeFilter, setActiveFilter] = useState("All");
 	const [animatedCard, setAnimatedCard] = useState({ y: 0, opacity: 1 });
 	const [works, setWorks] = useState([]);
 	const [filterWork, setFilterWork] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const query = '*[_type == "works"]';
@@ -35,7 +38,7 @@ const Work = () => {
 			}
 		}, 500);
 	};
-
+	console.log(filterWork);
 	return (
 		<>
 			<h2 className="head-text ">
@@ -60,12 +63,27 @@ const Work = () => {
 			<motion.div
 				animate={animatedCard}
 				transition={{ duration: 0.5, delayChildren: 0.5 }}
-				className="app__work-portfolio"
+				className="app__work-portfolio  w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 place-content-center place-items-center"
 			>
 				{filterWork.map((work, i) => (
-					<div className="app__work-item app__flex" key={i}>
+					<div className="app__work-item app__flex " key={i}>
 						<div className="app__work-img app__flex">
-							<img src={urlFor(work.imgUrl)} alt={work.name} />
+							<div className="flex justify-center items-center w-full relative">
+								{isLoading && (
+									<div className="absolute z-50">
+										<LoadingSpinner />
+									</div>
+								)}
+								<img
+									src={urlFor(work.imgUrl)}
+									alt={work.name}
+									onLoad={() => {
+										setTimeout(() => {
+											setIsLoading(false);
+										}, 2000);
+									}}
+								/>
+							</div>
 
 							<motion.div
 								whileHover={{ opacity: [0, 1] }}
@@ -86,7 +104,7 @@ const Work = () => {
 										<AiFillEye title="view Code" />
 									</motion.div>
 								</a>
-								<a href={work.projectLink} target="_blank" rel="noreferrer">
+								<a href={work.codeLink} target="_blank" rel="noreferrer">
 									<motion.div
 										whileInView={{ scale: [0, 1] }}
 										whileHover={{ scale: [1, 0.9] }}

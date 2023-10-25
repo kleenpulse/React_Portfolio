@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { client } from "../../client";
 import { images } from "../../constants";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -11,7 +12,7 @@ const Footer = () => {
 		email: "",
 		message: "",
 	});
-	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+	const [isFormSubmitted, setIsFormSubmitted] = useState(true);
 	const [loading, setLoading] = useState(false);
 
 	const { name, email, message } = formData;
@@ -22,6 +23,8 @@ const Footer = () => {
 		setFormData({ ...formData, [name]: value });
 	};
 
+	const isDisabled = !formData.name || !formData.email || !formData.message;
+
 	const handleSubmit = () => {
 		const contact = {
 			_type: "contact",
@@ -29,6 +32,7 @@ const Footer = () => {
 			email: email,
 			message: message,
 		};
+		if (!message) return;
 		if (message) {
 			setLoading(true);
 			setTimeout(() => {
@@ -37,10 +41,15 @@ const Footer = () => {
 					setIsFormSubmitted(true);
 				});
 			}, 2000);
-		} else {
-			{
-			}
 		}
+	};
+	const resetForm = () => {
+		setIsFormSubmitted(false);
+		setFormData({
+			name: "",
+			email: "",
+			message: "",
+		});
 	};
 
 	return (
@@ -86,7 +95,7 @@ const Footer = () => {
 						/>
 					</div>
 
-					<div>
+					<div className="app__flex">
 						<textarea
 							name="message"
 							id="msg"
@@ -99,19 +108,26 @@ const Footer = () => {
 
 					<button
 						type="button"
-						className={`p-text ${loading && "sending"}`}
+						className={`p-text ${
+							loading ? "opacity-50" : ""
+						}  disabled:opacity-70 disabled:pointer-events-none relative text-lg `}
 						onClick={handleSubmit}
+						disabled={isDisabled}
 					>
-						{loading ? (
-							<div className="loading">Sending...</div>
-						) : (
-							"Send Message"
+						{loading ? "Sending...." : "Send"}
+						{loading && (
+							<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !opacity-100 scale-90  z-50">
+								<LoadingSpinner />
+							</div>
 						)}
 					</button>
 				</div>
 			) : (
-				<div>
+				<div className="w-full flex justify-center flex-col items-center">
 					<h3 className="head-text">Thank You For Getting in Touch</h3>
+					<button className="form-btn max-w-[80%]" onClick={resetForm}>
+						Send Another Message
+					</button>
 				</div>
 			)}{" "}
 		</>

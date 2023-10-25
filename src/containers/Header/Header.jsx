@@ -5,7 +5,7 @@ import "./Header.scss";
 import { AppWrap } from "../../wrapper";
 
 import { ThemeContext } from "../../ThemeContext";
-import { useState } from "react";
+
 import { Suspense } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -20,7 +20,6 @@ const scaleVariants = {
 	},
 };
 const Header = () => {
-	const [isLoading, setIsLoading] = useState(true);
 	const { isDarkTheme } = React.useContext(ThemeContext);
 	return (
 		<div className="app__header app__flex">
