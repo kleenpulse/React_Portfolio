@@ -5,6 +5,9 @@ import "./Header.scss";
 import { AppWrap } from "../../wrapper";
 
 import { ThemeContext } from "../../ThemeContext";
+import { useState } from "react";
+import { Suspense } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const scaleVariants = {
 	whileInView: {
@@ -17,6 +20,7 @@ const scaleVariants = {
 	},
 };
 const Header = () => {
+	const [isLoading, setIsLoading] = useState(true);
 	const { isDarkTheme } = React.useContext(ThemeContext);
 	return (
 		<div className="app__header app__flex">
@@ -45,7 +49,9 @@ const Header = () => {
 				transition={{ duration: 0.5, delayChildren: 0.5 }}
 				className="app__header-img"
 			>
-				<img src={images.profile} alt="avatar-model" />
+				<Suspense fallback={<LoadingSpinner />}>
+					<img src={images.profile} alt="avatar-model" />
+				</Suspense>
 				<motion.img
 					whileInView={{ scale: [0, 1] }}
 					transition={{ duration: 1, ease: "easeInOut" }}

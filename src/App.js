@@ -5,6 +5,8 @@ import { About, Footer, Header, Work, Skills, Testimonials } from './containers'
 import { Navbar } from './components'
 import { ThemeContext } from "./ThemeContext"
 import './App.scss'
+import { Suspense } from 'react';
+import LoadingSpinner from './components/LoadingSpinner';
 
 
 const App = () => {
@@ -47,7 +49,9 @@ const App = () => {
 
         <Navbar />
         <Header />
-        <About />
+        <Suspense fallback={<LoadingSpinner />}>
+          <About />
+        </Suspense>
         <Work />
         <Skills />
         <Testimonials />

@@ -4,9 +4,11 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 
 import "./About.scss";
 import { urlFor, client } from "../../client";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 const About = () => {
 	const [abouts, setAbouts] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const query = '*[_type == "abouts"]';
@@ -16,7 +18,7 @@ const About = () => {
 
 	return (
 		<>
-			<h2 className="head-text ">
+			<h2 className="head-text">
 				I know that
 				<span> Good Dev.</span>
 				<br />
@@ -33,7 +35,14 @@ const About = () => {
 						className="app__profile-item"
 						key={about.title + i}
 					>
-						<img src={urlFor(about.imgUrl)} alt={about.title} />
+						<div className="flex justify-center items-center w-full">
+							{isLoading && <LoadingSpinner />}
+							<img
+								src={urlFor(about.imgUrl)}
+								alt={about.title}
+								onLoad={() => setIsLoading(false)}
+							/>
+						</div>
 						<h2 className="bold-text" style={{ marginTop: 20 }}>
 							{about.title}
 						</h2>
