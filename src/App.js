@@ -8,7 +8,7 @@ import './App.scss'
 
 
 const App = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [isDarkTheme, setIsDarkTheme] = useState(false)
   useEffect(() => {
     let checkTheme = localStorage.getItem('theme');
     if (checkTheme === 'dark') {
